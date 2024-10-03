@@ -11,6 +11,7 @@ const Navbar = () => {
         </div>
         {user && (
           <div className="flex-none gap-2">
+            <p className="-mr-8">Welcome, {user.firstName} 😍</p>
             <div className="dropdown dropdown-end">
               <div
                 tabIndex={0}
@@ -26,7 +27,7 @@ const Navbar = () => {
               </div>
               <ul
                 tabIndex={0}
-                className="menu menu-sm dropdown-content bg-base-100 rounded-box z-[1] mt-3 w-52 p-2 shadow"
+                className="menu menu-sm dropdown-content bg-gray-700 rounded-box z-[1] mt-3 w-52 p-2 shadow"
               >
                 <li>
                   <a className="justify-between">
