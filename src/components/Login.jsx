@@ -7,7 +7,10 @@ import { useNavigate } from "react-router-dom";
 
 const Login = () => {
   const [email, setEmail] = useState("");
+
   const [password, setPassword] = useState("");
+
+  const [error, setError] = useState("");
 
   const dispatch = useDispatch();
   const navigate = useNavigate();
@@ -25,8 +28,8 @@ const Login = () => {
       // Adding data to redux store
       dispatch(addUser(result.data));
       navigate("/");
-    } catch (error) {
-      console.error(`Error: ${error.message}`);
+    } catch (err) {
+      setError(err?.response?.data || "Something went wrong");
     }
   };
   return (
@@ -65,12 +68,17 @@ const Login = () => {
                 }}
               />
             </label>
+            {error ? (
+              <span className="text-red-500 font-bold text-center -mb-5">
+                Error: {error}
+              </span>
+            ) : null}
             <div className="card-actions">
               <button
                 className="btn w-full mt-5 hover:text-orange-700 bg-black"
                 onClick={handleLogin}
               >
-                Login In
+                Login
               </button>
             </div>
           </div>

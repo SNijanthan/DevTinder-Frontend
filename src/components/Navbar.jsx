@@ -13,21 +13,11 @@ const Navbar = () => {
 
   const handleLogout = async () => {
     try {
-      const res = await axios.post(
-        BASE_URL + "/logout",
-        {},
-        { withCredentials: true }
-      );
-
-      if (res.status === 200) {
-        localStorage.removeItem("token");
-        dispatch(removeUser(user));
-        navigate("/login");
-      } else {
-        console.error("Logout Failed");
-      }
+      await axios.post(BASE_URL + "/logout", {}, { withCredentials: true });
+      dispatch(removeUser());
+      return navigate("/login");
     } catch (error) {
-      console.log(error);
+      console.error(error);
     }
   };
 
